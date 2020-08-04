@@ -4,9 +4,16 @@ $fn=50;
 
 module baseClamp(){
     union(){
+        lipSize =3;
         difference(){
             union(){
                 cube([$baseWidth,$baseDepth,45], center=true);
+                
+                //top lip
+                translate([0,0,45/2])
+                linear_extrude(3)
+                    circle($canRadius-lipSize+10);
+                
                 translate([$baseWidth/2, 0, 0])
                 cube([40, 75, 45], center=true);
             }
@@ -20,14 +27,14 @@ module baseClamp(){
                 translate([0,0,16])
                 cylinder(4,$canRadius+$canLip, $canRadius+$canLip, center=true);
                 //smaller top lip
-                cylinder(50,$canRadius-3, $canRadius-3, $fn=300, center=true);
+                #cylinder(60,$canRadius-lipSize, $canRadius-lipSize, $fn=300, center=true);
             //}
             
             //clamp cuts
-            translate([($baseWidth/2), 0, -5])
+            translate([($baseWidth/2), 0, -1])
                 cube([($baseWidth/2)+10, 10, ($baseWidth/2)], center=true);
             //hinge
-            translate([($baseWidth/4)-$canRadius-10, 0, -5])
+            translate([($baseWidth/4)-$canRadius-10, 0, -1])
                 union(){    
                     cube([($baseWidth/2), 10, ($baseWidth/2)], center=true);
                     hull(){
@@ -63,8 +70,8 @@ module defaults(){
     $baseDepth = $baseWidth;
     $clampHeight = 45;
 
-    $canRadius = 42.5;
-    $canLip = 2;  
+    $canRadius = 42.7;
+    $canLip = 3;  
         
     baseClamp();
 }
