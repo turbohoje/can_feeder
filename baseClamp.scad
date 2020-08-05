@@ -12,10 +12,8 @@ module baseClamp(){
                 //top lip
                 translate([0,0,45/2])
                 linear_extrude(3)
-                    circle($canRadius-lipSize+10);
+                    circle($canRadius-lipSize+10, $fn=500);
                 
-                //translate([$baseWidth/2, 0, 0])
-                //cube([40, 75, 45], center=true);
             }
             
             //can

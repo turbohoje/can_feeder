@@ -3,7 +3,7 @@ $fn=75;
 module motor(){
     gearboxDia   = 37/2;
     gearboxDepth = 24.5;
-    motorDia     = 33/2;
+    motorDia     = gearboxDia;//33/2;
     motorDepth   = 23;
     depth        = gearboxDepth + motorDepth;
     shaftBearing = 12/2;
@@ -17,7 +17,7 @@ module motor(){
         circle(gearboxDia);
     
     //motor
-    translate([0,0,-motorDepth])
+    translate([0,0,-motorDepth+.01])
     linear_extrude(motorDepth)
         circle(motorDia);
     

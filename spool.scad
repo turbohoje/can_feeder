@@ -1,4 +1,4 @@
-$fn = 75;
+$fn = 200;
 
 module spool(){
     shaftRad    = 6/2;
@@ -32,7 +32,7 @@ module spool(){
             rotate([90,0,0])
                 cylinder(spoolHeight, 1, 1, center=true);
         //screw head void
-        #translate([-spoolRad/2-1.5, shaftRad+spoolHeight/2-1, spoolHeight/2])
+        translate([-spoolRad/2-1.5, shaftRad+spoolHeight/2-1, spoolHeight/2])
             rotate([90,0,0])
                 cylinder(spoolHeight, 2.5, 2.5, center=true);
     }
