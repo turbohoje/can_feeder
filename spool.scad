@@ -28,13 +28,18 @@ module spool(){
         }
         
         //screw holes
-        translate([-spoolRad/2-1.5, 0, spoolHeight/2])
-            rotate([90,0,0])
-                cylinder(spoolHeight, 1, 1, center=true);
-        //screw head void
-        translate([-spoolRad/2-1.5, shaftRad+spoolHeight/2-1, spoolHeight/2])
+        //translate([-spoolRad/2-1.5, 0, spoolHeight/2])
+        //    rotate([90,0,0])
+        //        cylinder(spoolHeight, 1, 1, center=true);
+        
+		//screw head void
+        translate([-spoolRad/2-1.5, shaftRad+spoolHeight/2+1, spoolHeight/2])
             rotate([90,0,0])
                 cylinder(spoolHeight, 2.5, 2.5, center=true);
+		
+		//shaft room for lack of slot
+		#translate([0,0,18-3.7])
+			cylinder(10, shaftRad, shaftRad);
     }
     
 }
