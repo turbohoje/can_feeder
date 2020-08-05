@@ -30,7 +30,7 @@ module topMotorMount(){
 		translate([-25,-26,20])
 			rotate([0,0,0])
 			cylinder(15, 1, 1, center=true);
-		#translate([-25,-26,22])
+		translate([-25,-26,22])
 			rotate([0,0,0])
 			cylinder(11, 2, 2, center=true);
 		
@@ -62,12 +62,14 @@ module topMotorMount(){
 			relief();
 		rotate([0,0,-90])
 			relief();
+		rotate([0,0,90])
+			relief();
 	}
 }
 
 module relief(){
 	inset = 5;
-	innersq = 50;
+	innersq = 41;
 	
 	translate([0,0,-($lidHeight+5)/2])
 	linear_extrude($lidHeight+5){
