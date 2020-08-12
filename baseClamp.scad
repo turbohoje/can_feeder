@@ -10,23 +10,24 @@ module baseClamp(){
                 cube([$baseWidth,$baseDepth,45], center=true);
                 
                 //top lip
-                translate([0,0,45/2])
-                linear_extrude(3)
-                    circle($canRadius-lipSize+10, $fn=500);
+                //translate([0,0,45/2])
+                //linear_extrude(3)
+                //    circle($canRadius-lipSize+10, $fn=500);
                 
             }
             
             //can
-            //translate([($baseWidth/2), ($baseDepth/2), -10]){
                 //can
-                translate([0,0,-8])
-                 cylinder(50,$canRadius, $canRadius, center=true);
-                //lip
-                translate([0,0,16])
-                cylinder(4,$canRadius+$canLip, $canRadius+$canLip, center=true);
-                //smaller top lip
-                cylinder(60,$canRadius-lipSize, $canRadius-lipSize, $fn=300, center=true);
-            //}
+			translate([0,0,-8])
+			 cylinder(50,$canRadius, $canRadius, center=true);
+			//lip
+			translate([0,0,16])
+				cylinder(4,$canRadius+$canLip, $canRadius+$canLip, center=true);
+			//smaller top lip
+			cylinder(60,$canRadius-lipSize, $canRadius-lipSize, $fn=300, center=true);
+			//printing upside down, dont want to scaffold, this cone is for cleanlyness
+			translate([0,0,12.01])
+				cylinder(4,$canRadius, $canRadius+$canLip, center=true);
             
             //clamp cuts
             translate([($baseWidth/2), 0, -1])
@@ -54,7 +55,9 @@ module baseClamp(){
             for($x = [-1,1]){
                 for($y = [-1,1]){
                 translate([$x*xy_radius, $y*xy_radius, 12])
-                    cylinder(45, 6/2, 6.4/2, center=true);
+                    cylinder(45, 6/2, 6.6/2, center=true);
+				#translate([$x*xy_radius, $y*xy_radius, -11.5])	
+					cylinder(2, 0, 6/2, center=true);
                 }
             }
 			
@@ -62,20 +65,20 @@ module baseClamp(){
 			standoff=5;
 			yattach=25;
             
-			tighten = -.3;
+			tighten = -1;
 			innes	= 3;
 			
 			translate([0,0,-45/2-.5])
 			linear_extrude(46)
 				polygon(points=[
-					[$baseWidth/2+standoff-innes, -yattach-tighten],
+					[$baseWidth/2+standoff-innes, -yattach-tighten-2],
 					[$baseWidth/2-standoff-innes, -yattach-tighten],
 					[$baseWidth/2+2*standoff-innes, -yattach-(2*standoff)-tighten],
 				]);
         }
 		
 		//add the snap
-		standoff=5;
+		standoff=4;
 		yattach=25;
 		
 		translate([0,0,-45/2])
@@ -83,10 +86,10 @@ module baseClamp(){
 			polygon(points=[
 				[$baseWidth/2, yattach],
 				//thin part
-				[$baseWidth/2+standoff + (standoff/2)+1.5, yattach],
-				[$baseWidth/2+standoff + (standoff/2)+1.5, yattach-10],
+				[$baseWidth/2+standoff + (standoff/2), yattach],
+				[$baseWidth/2+standoff + (standoff/2), yattach-10],
 			
-				[$baseWidth/2+standoff, -yattach],
+				[$baseWidth/2+standoff, -yattach-1.5],
 				[$baseWidth/2-standoff, -yattach],
 				[$baseWidth/2+2*standoff, -yattach-(2*standoff)],
 				[$baseWidth/2+2*standoff, yattach+standoff*2],
@@ -95,7 +98,6 @@ module baseClamp(){
 			]);
 		}
 		
-		//add the cleat
 		
     }
 }
@@ -106,7 +108,7 @@ module defaults(){
     $baseDepth = $baseWidth;
     $clampHeight = 45;
 
-    $canRadius = 42.7;
+    $canRadius = 42.65;
 	$canLip = 3;  
         
     difference(){
@@ -141,7 +143,7 @@ module cleat(){
 		
 			]);
 			translate([0,0,cleatHeight])
-			linear_extrude(1)
+			linear_extrude(.001)
 			polygon(points=[
 				[shrink*cleatWidth, 0],
 				[shrink*cleatWidth + cleatThickness * sin(cleatAngle), cleatThickness * cos(cleatAngle)],

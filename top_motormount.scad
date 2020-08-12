@@ -38,8 +38,11 @@ module topMotorMount(){
 		xy_radius = $baseWidth/2-6;
 		for($x = [-1,1]){
 			for($y = [-1,1]){
-			translate([$x*xy_radius, $y*xy_radius, -$lidHeight/2 ])
-				cylinder($lidHeight*(.8), 6.4/2, 6/2, center=true);
+			translate([$x*xy_radius, $y*xy_radius, -$lidHeight/4 ])
+				cylinder($lidHeight*(.8), 6.6/2, 6/2, center=true);
+			translate([$x*xy_radius, $y*xy_radius, -$lidHeight/4 + $lidHeight/2-2])	
+				cylinder(2, 6/2, 0, center=true);
+				
 			}
 		}
 		
@@ -53,23 +56,26 @@ module topMotorMount(){
 				rotate([0,90,90])
 				motor();
 			}
-			sphere(.75);
+			sphere(.25);
 		}
 		
 		//reliefs
-		relief();
+		relief(75);
 		rotate([0,0,180])
-			relief();
+			relief(75);
 		rotate([0,0,-90])
-			relief();
+			relief(75);
 		rotate([0,0,90])
 			relief();
+	
+		//cut bottom off clamp
+		translate([0,0,-$clampHeight/2-2])
+			cube([$baseWidth,$baseDepth,20], center=true);
 	}
 }
 
-module relief(){
-	inset = 5;
-	innersq = 41;
+module relief(innersq = 41){
+	inset = 3;
 	
 	translate([0,0,-($lidHeight+5)/2])
 	linear_extrude($lidHeight+5){
@@ -77,7 +83,7 @@ module relief(){
 			polygon(points=[
 				[-$baseWidth/2-inset, -$baseDepth/2+inset],
 				[-$baseWidth/2-inset, $baseDepth/2-inset],
-				[0,0]
+				[-20,0]
 			]);
 			square([$baseWidth-innersq,$baseDepth-innersq], center=true);
 		}
@@ -88,6 +94,6 @@ module relief(){
 topMotorMount();
 
 
-%translate([0,0,-100])
-baseClamp();
+//%translate([0,0,-100])
+//baseClamp();
 
