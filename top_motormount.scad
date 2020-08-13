@@ -48,7 +48,7 @@ module topMotorMount(){
 		
 		//center cutout
 		translate([0,0,-2])
-		cube([20, 20, $lidHeight +5], center=true);
+		cube([40, 20, $lidHeight +5], center=true);
 		
 		//motor cut
 		minkowski(){
@@ -60,9 +60,9 @@ module topMotorMount(){
 		}
 		
 		//reliefs
-		relief(75);
+		relief(55);
 		rotate([0,0,180])
-			relief(75);
+			relief(55);
 		rotate([0,0,-90])
 			relief(75);
 		rotate([0,0,90])
