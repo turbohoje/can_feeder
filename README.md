@@ -15,3 +15,19 @@ pip3 install RPi.GPIO git zsh
 git clone git@github.com:turbohoje/can_feeder.git
 ```
 
+## OpenSCAD Models
+Below are the models in this project
+
+This base below will cascade hook to other bases.
+![base](./baseClamp.scad.png?raw=true)
+The base and the top are joined with .25" rod (x4).
+![base](./top_motormount.scad.png?raw=true)
+
+#### The following are supplemental models
+Prototype winch.
+![prototype](./can_feeder.scad.png?raw=true)
+This is a gear motor from sparkfun.  This is subtracted from the material above.
+![base](./gear_motor.scad.png?raw=true)
+This is the spool that goes on the motor.  1/2" nylon strap wraps up around ths.
+![base](./spool.scad.png?raw=true)
+
