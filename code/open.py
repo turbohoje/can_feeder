@@ -2,6 +2,7 @@
 
 import RPi.GPIO as GPIO
 import time
+import sys, getopt
 
 # GPIOid - rpi-PIN
 # 16 - 36
