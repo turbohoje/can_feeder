@@ -1,7 +1,6 @@
 # Images of working project
 
-![image](./IMG_0005.HEIC?raw=true)
+![image](./IMG_0010.JPG?raw=true)
 
-![image](IMG_0006.HEIC)
+![image](./IMG_0011.JPG?raw=true)
 
-![image](IMG_0007.HEIC)
